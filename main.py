@@ -1,5 +1,8 @@
 from faker import Faker
 from faker.providers import DynamicProvider
+import csv
+from datetime import datetime
+
 
 def getProductCategoryProvider():
     product_category_provider = DynamicProvider(
@@ -27,20 +30,32 @@ def getFailureProvider():
 
 def main():
     print("Running application...")
-    fake = Faker()
-    # Add the product category provider
-    fake.add_provider(getProductCategoryProvider())
-    fake.add_provider(getPaymentProvider())
-    fake.add_provider(getFailureProvider())
+    with open(f"GenerateData-{datetime.now().strftime('%Y-%m-%d %H:%M')}.csv", "w", newline='') as csvfile:
+        gen_data_csv_writer = csv.writer(csvfile)
+
+        fields = ["order_id", "customer_id", "customer_name", "product_id", "product_name",
+                       "product_category", "payment_type", "qty", "price", "datetime", "country", "city",
+                       "ecommerce_website_name", "payment_txn_id", "payment_txn_success", "failure_reason"]
+        gen_data_csv_writer.writerow(fields)
+
+        fake = Faker()
+        for i in range(14000):
+
+            # Add the product category provider
+            fake.add_provider(getProductCategoryProvider())
+            fake.add_provider(getPaymentProvider())
+            fake.add_provider(getFailureProvider())
 
 
-    product_category = fake.category()
-    payment_type = fake.payment_type()
-    quantity = fake.pyint(min_value=1, max_value=20)
-    price = round(fake.pyfloat(min_value=1.00, max_value=200.00), 2)
-    failure_reason = fake.failure_reason()
+            product_category = fake.category()
+            payment_type = fake.payment_type()
+            quantity = fake.pyint(min_value=1, max_value=20)
+            price = round(fake.pyfloat(min_value=1.00, max_value=200.00), 2)
+            failure_reason = fake.failure_reason()
 
-    print(f'Category: {product_category}, Payment Type: {payment_type}, Quantity: {quantity}, Price: {price}, Failure Reason: {failure_reason}')
+            row = []        #TODO: put the faker generated variables here to be written to the csv file
+            gen_data_csv_writer.writerow(row)
+
 
 # Run main function
 if __name__ == "__main__":
