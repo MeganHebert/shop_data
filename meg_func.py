@@ -1,6 +1,7 @@
 from faker import Faker
 import random 
 import uuid
+from faker.providers import DynamicProvider
 
 fake = Faker()
  
@@ -12,8 +13,12 @@ def generate_productID():
     productID = random.sample(num,1)[0]
     return productID
 
-def generate_name():
-    return fake.name()
+def getNameProvider():
+    name_provider = DynamicProvider(
+        provider_name = "customer_name",
+        elements = [fake.name()],
+    )
+    return name_provider
 
 def generate_products():
         beauty = ["Moisturizer","Cleanser","Sunscreen","Foundation","Concealer","Blush","Mascara","Lipstick","Eyeliner","Eyeshadow","Serum",
@@ -61,7 +66,5 @@ def generate_products():
         watches = ['Rolex Submariner','Omega Seamaster','Patek Philippe Nautilus','Audemars Piguet Royal Oak','Tag Heuer Carrera','Breitling Navitimer','Longines Master Collection',
                     'Omega Speedmaster Professional','IWC Pilot’s Watch','Jaeger-LeCoultre Reverso','Cartier Tank','Tissot Le Locle']
         
-
         
         return beauty, books, electronics, fine_art, health_pc, home_garden, music_dvd, instruments, office, outdoor, pet, software, sports, toys_games, video_games, video_blueR, watches
-
