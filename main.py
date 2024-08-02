@@ -3,6 +3,7 @@ from faker.providers import DynamicProvider
 import products
 import uuid
 import csv
+import math
 
 def generateOrderId():
     return str(uuid.uuid4())
@@ -63,7 +64,7 @@ def addProviders(fake):
     fake.add_provider(products.getVideoProvider())
     fake.add_provider(products.getWatchProvider())
 
-def appendGeneratedData(fake, data):
+def appendGeneratedData(fake, data, count, rogue_amount):
     category_product_id = products.grab_random_category_product(fake).split(',')
 
     order_id = generateOrderId()
@@ -82,6 +83,13 @@ def appendGeneratedData(fake, data):
     payment_txn_id = fake.random_number(digits=5, fix_len=True)
     payment_txn_success = fake.random_element(elements=['Y', 'N'])
     failure_reason = fake.failure_reason()
+
+    # Random data added
+    if count <= rogue_amount + 1:
+        city += str(fake.pyint(min_value=1, max_value=10))
+        ecommerce_website += '/' + fake.catch_phrase() + '/'
+
+
     data.append({'order_id': order_id, 'customer_id': customer_id, 'customer_name': customer_name, 'product_id': product_id, 
                     'product_name': product_name, 'product_category':product_category, 'payment_type':payment_type, 'qty':quantity, 'price':price, 
                     'datetime':date_time, 'country':country, 'city':city, 'ecommerce_website_name':ecommerce_website, 'payment_txn_id':payment_txn_id,
@@ -97,14 +105,15 @@ def main():
     fake = Faker()
 
     addProviders(fake)
-
+    
     data = []
 
     counter = 1
-    limit = 10
+    limit = 10001
+    rogue_amount = math.ceil(limit * 0.04)
 
     while counter < limit:
-        appendGeneratedData(fake, data)
+        appendGeneratedData(fake, data, counter, rogue_amount)
         counter += 1
 
     #print(data)
