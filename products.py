@@ -18,7 +18,11 @@ def generate_customerID():
      return customerID
 
 def generate_name():
-    return fake.name()
+    name_provider = DynamicProvider(
+        provider_name = "customer_name",
+        elements = [fake.name()],
+    )
+    return name_provider
 
 # 17 categories
 def grab_random_category_product(fake):
