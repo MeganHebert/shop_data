@@ -13,6 +13,10 @@ def generate_productID():
     productID = random.sample(num,1)[0]
     return productID
 
+def generate_customerID():
+     customerID = fake.random_number(digits=5, fix_len=True)
+     return customerID
+
 def generate_name():
     return fake.name()
 
