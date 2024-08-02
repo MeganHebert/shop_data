@@ -1,62 +1,97 @@
-from faker import Faker
 from faker.providers import DynamicProvider
 import random 
-import uuid
 
-fake = Faker()
- 
-def generate_orderID():
-    return str(uuid.uuid4())
-
-def generate_productID():
+def generateProductId():
     num  = range(1,2000)
     productID = random.sample(num,1)[0]
     return productID
 
-def generate_name():
-    return fake.name()
+def getProductCategoryProvider():
+    product_category_provider = DynamicProvider(
+        provider_name = 'category',
+        elements = ['Beauty', 'Books', 'Electronics', 'Fine Art', 'Health & Personal Care', 
+                        'Home & Garden', 'Music & DVD', 'Musical Instruments', 'Office Products', 
+                        'Outdoors', 'Pet Supplies', 'Software', 'Sports', 'Toys & Games', 'Video Games', 
+                        'Video & Blu-ray', 'Watches'],
+    )
+    return product_category_provider
 
 # 17 categories
 def grab_random_category_product(fake):
     selection = random.randint(1,17)
+    #print('Selection: ' + str(selection))
     product = None
+    category = None
     match selection:
         case 1:
             product = fake.beauty_product()
+            category = 'Beauty'
+            #print("case: " + str(selection) + " " + str(product))
         case 2:
             product = fake.books_product()
+            category = 'Books'
+            #print("case: " + str(selection) + " " + str(product))
         case 3:
             product = fake.electronics_product()
+            category = 'Electronics'
+            #print("case: " + str(selection) + " " + str(product))
         case 4:
             product = fake.finearts_product()
+            category = 'Fine Art'
+            #print("case: " + str(selection) + " " + str(product))
         case 5:
             product = fake.health_product()
+            category = 'Health & Personal Care'
+            #print("case: " + str(selection) + " " + str(product))
         case 6:
             product = fake.home_garden_product()
+            category = 'Home & Garden'
+            #print("case: " + str(selection) + " " + str(product))
         case 7:
             product = fake.music_product()
+            category = 'Music & DVD'
+            #print("case: " + str(selection) + " " + str(product))
         case 8:
             product = fake.instruments_product()
+            category = 'Musical Instruments'
+            #print("case: " + str(selection) + " " + str(product))
         case 9:
             product = fake.office_product()
+            category = 'Office Products'
+            #print("case: " + str(selection) + " " + str(product))
         case 10:
             product = fake.outdoor_product()
+            category = 'Outdoors'
+            #print("case: " + str(selection) + " " + str(product))
         case 11:
             product = fake.pet_product()
+            category = 'Pet Supplies'
+            #print("case: " + str(selection) + " " + str(product))
         case 12:
             product = fake.software_product()
+            category = 'Software'
+            #print("case: " + str(selection) + " " + str(product))
         case 13:
             product = fake.sports_product()
+            category = 'Sports'
+            #print("case: " + str(selection) + " " + str(product))
         case 14:
             product = fake.toy_games_product()
+            category = 'Toys & Games'
+            #print("case: " + str(selection) + " " + str(product))
         case 15:
             product = fake.video_games_product()
+            category = 'Video Games'
+            #print("case: " + str(selection) + " " + str(product))
         case 16:
             product = fake.video_product()
+            category = 'Video & Blu-ray'
+           # print("case: " + str(selection) + " " + str(product))
         case 17:
             product = fake.watch_product()
-        case _:
-            product = None
+            category = 'Watches'
+            #print("case: " + str(selection) + " " + str(product))
+    return product + ',' + category 
 
 def getBeautyProvider():
     product_provider = DynamicProvider (

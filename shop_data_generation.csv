@@ -1,0 +1,10 @@
+order_id,customer_id,customer_name,product_id,product_name,product_category,payment_type,qty,price,datetime,country,city,ecommerce_website_name,payment_txn_id,payment_txn_success,failure_reason
+82facb1d-8e11-4533-ab6c-0344d6b5aaf2,456129,Gregory Malone,957,cello,Musical Instruments,Cash,10,76.9,2017-01-21 15:43,Chad,North Alexishaven,www.shopify.com,78126,N,insufficient funds
+50b5cf8d-96cd-4c02-9cdd-0e74de7b92d1,475126,Brooke Miller,261,toaster,Electronics,Cash,1,198.85,1997-01-29 00:58,Taiwan,Lake Cheryl,www.etsy.com,66594,N,insufficient funds
+006df22b-0d49-482f-9dd5-fc059e818aaa,847136,Christina Massey,1138,Baseball Bat,Toys & Games,Credit,8,3.72,2015-11-30 05:03,Benin,Reyesmouth,www.wayfair.com,64309,Y,payment failed
+b21e1654-7620-4eef-abd6-eb3eea2cca25,246442,Jamie Miller,16,War and Peace,Books,Cash,9,43.71,2020-01-02 17:14,Suriname,Gilbertside,www.alibaba.com,57631,N,payment failed
+9d84c884-183b-4dc6-851d-902b0a79d5da,650812,Stephanie Trujillo,550,Call of Duty: Modern Warfare II,Video Games,Credit,15,62.22,2021-01-16 03:49,Gabon,Lake Anthonyland,www.flipkart.com,29793,N,network timeout
+849e127a-5853-4300-9783-7bf809883f84,307152,Mary Salazar,558,flute,Musical Instruments,Credit,19,199.67,1992-05-03 19:39,Netherlands,Aguilarport,www.walmart.com,47664,N,card declined
+ce79b9bc-0611-4cef-bb05-b24a9421ed6a,472686,Julie Brooks,1210,Overwatch 2,Video Games,Cash,6,130.37,2015-01-06 10:34,Portugal,Fergusonport,www.overstock.com,41545,N,insufficient funds
+9da63992-3b78-438c-8978-6579fb31d414,574674,Christina Odom,1441,into the ocean,Music & DVD,Debit,12,1.28,1990-09-01 01:39,China,Port Adam,www.target.com,81108,Y,payment failed
+0b12f448-fdc5-4d1b-923b-d92a37e23924,762774,Leslie Long,947,The Hobbit,Books,Debit,9,139.45,1989-09-12 05:45,Anguilla,Lake Meganside,www.alibaba.com,98879,N,network timeout
