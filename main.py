@@ -64,14 +64,14 @@ def addProviders(fake):
     fake.add_provider(products.getWatchProvider())
 
 def appendGeneratedData(fake, data):
-    category_and_product = products.grab_random_category_product(fake).split(',')
+    category_product_id = products.grab_random_category_product(fake).split(',')
 
     order_id = generateOrderId()
     customer_id = fake.unique.random_int(min=111111, max=999999)
     customer_name = generate_name(fake)
-    product_id = products.generateProductId()
-    product_name = category_and_product[0]
-    product_category = category_and_product[1]
+    product_id = category_product_id[2]
+    product_name = category_product_id[0]
+    product_category = category_product_id[1]
     payment_type = fake.payment_type()
     quantity = fake.pyint(min_value=1, max_value=20)
     price = round(fake.pyfloat(min_value=1.00, max_value=200.00), 2)

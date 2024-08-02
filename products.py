@@ -1,6 +1,51 @@
 from faker.providers import DynamicProvider
 import random 
 
+beauty_list = ["Moisturizer","Cleanser","Sunscreen","Foundation","Concealer","Blush","Mascara","Lipstick","Eyeliner","Eyeshadow","Serum",
+            "Toner","Face Mask","Exfoliator","Hair Conditioner","Shampoo","Body Lotion","Nail Polish","Perfume","Makeup Remover"]
+
+book_list = ["To Kill a Mockingbird","1984","The Great Gatsby","The Catcher in the Rye","Moby-Dick","Pride and Prejudice", "War and Peace", 
+                    "The Hobbit", "Crime and Punishment", "The Lord of the Rings"]
+
+electronic_list = ["microwave", "oven", "toaster", "refrigerator", "dishwasher"]
+
+fine_arts_list = ["floral painting", "scenic painting", "animal painting", " mermaid sculpture", "modern sculpture", "romantic poetry", "sad poetry", "intense poetry"]
+
+health_list = ["fish oil", "magnesium", "feminine products", "motrin", "advil", "toe fungus cream"]
+
+home_garden = ["red plush throw pillow", "white plush throw pillow", "blue plush throw pillow", "red fuzzy blanket", "white fuzzy blanket", "blue fuzzy blanket",
+                    "vanilla candle", "citrus candle", "shovel", "planter pots", "soil", "strawberry seeds", "tomato seeds", "blackberry seeds"]
+
+music_list = ["big ben", "into the ocean", "clean slate", "demons", "Shrek", "The other woman", "Save Willy"]
+
+instrument_list =["guitar", "flute", "drums", "cello", "conga", "piano"]
+
+office_list = ['Paper','Pens','Pencils','Notebooks','Binders','Folders','Stapler','Staples','Paper Clips','Rubber Bands','Highlighters','Markers','Whiteboard','Whiteboard Markers','Eraser']
+
+outdoor_list = ['Camping Tent','Sleeping Bag','Camping Stove','Cooler','Backpack','Hiking Boots','Outdoor Clothing','Sleeping Pad','Lantern','First Aid Kit','Fishing Rod','Fishing Tackle',
+            'Binoculars','Campfire Grill','Multi-tool','Camping Chairs','Portable Water Filter','Map and Compass','Flashlight','Fire Starter','Sunscreen','Bug Spray','Water Bottle',
+            'Portable Charger']
+
+pet_list = ['Pet Food','Water Bowl','Food Bowl','Pet Bed','Leash','Collar','Harness','Grooming Brush','Cat Litter','Litter Box','Pet Carrier','Toys','Scratching Post','Pet Shampoo',
+            'Dental Chews','Pet Brush','Pet Nail Clippers','Pet Crate','Feeding Station','Pet Gates','Pet Cleaning Wipes','Training Pads','Pet Backpack','Pet Clothes','Pet Carrier Bag']
+
+software_list = ['Windows 11','macOS Ventura','Ubuntu','Fedora','Android','iOS', 'Adobe Photoshop']
+
+sports_list = ['Soccer Ball','Basketball','Baseball Glove','Baseball Bat','Volleyball','Tennis Racket','Golf Clubs','Golf Balls','Golf Tees','Golf Glove',
+            'Golf Bag','Rangefinder']
+
+toys_list = ['Soccer Ball','Basketball','Baseball Glove','Baseball Bat','Volleyball','Tennis Racket','Golf Clubs','Golf Balls','Golf Tees','Golf Glove',
+            'Golf Bag','Rangefinder']
+
+video_game_list = ['The Legend of Zelda: Breath of the Wild','Grand Theft Auto V','Red Dead Redemption 2','Assassin\'s Creed Valhalla','Spider-Man (PS4)','Horizon Forbidden West',
+                        'Call of Duty: Modern Warfare II','Battlefield 2042','DOOM Eternal','Overwatch 2','Counter-Strike: Global Offensive','Apex Legends']
+
+video_list = ['Mad Max: Fury Road','Inception','The Dark Knight','Avengers: Endgame','Jurassic Park','Mission: Impossible – Fallout','Star Wars: Episode IV - A New Hope',
+                        'Blade Runner 2049','The Matrix','Avatar','The Lord of the Rings: The Fellowship of the Ring','Guardians of the Galaxy']
+
+watch_list = ['Rolex Submariner','Omega Seamaster','Patek Philippe Nautilus','Audemars Piguet Royal Oak','Tag Heuer Carrera','Breitling Navitimer','Longines Master Collection',
+                    'Omega Speedmaster Professional','IWC Pilot’s Watch','Jaeger-LeCoultre Reverso','Cartier Tank','Tissot Le Locle']
+
 def generateProductId():
     num  = range(1,2000)
     productID = random.sample(num,1)[0]
@@ -22,76 +67,111 @@ def grab_random_category_product(fake):
     #print('Selection: ' + str(selection))
     product = None
     category = None
+    product_id = 0
     match selection:
         case 1:
             product = fake.beauty_product()
             category = 'Beauty'
+            index = beauty_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 2:
             product = fake.books_product()
             category = 'Books'
+            index = book_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 3:
             product = fake.electronics_product()
             category = 'Electronics'
+            index = electronic_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 4:
             product = fake.finearts_product()
             category = 'Fine Art'
+            index = fine_arts_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 5:
             product = fake.health_product()
             category = 'Health & Personal Care'
+            index = health_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 6:
             product = fake.home_garden_product()
             category = 'Home & Garden'
+            index = home_garden.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 7:
             product = fake.music_product()
             category = 'Music & DVD'
+            index = music_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 8:
             product = fake.instruments_product()
             category = 'Musical Instruments'
+            index = instrument_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 9:
             product = fake.office_product()
             category = 'Office Products'
+            index = office_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 10:
             product = fake.outdoor_product()
             category = 'Outdoors'
+            index = outdoor_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 11:
             product = fake.pet_product()
             category = 'Pet Supplies'
+            index = pet_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 12:
             product = fake.software_product()
             category = 'Software'
+            index = software_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 13:
             product = fake.sports_product()
             category = 'Sports'
+            index = sports_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 14:
             product = fake.toy_games_product()
             category = 'Toys & Games'
+            index = toys_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 15:
             product = fake.video_games_product()
             category = 'Video Games'
+            index = video_game_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
         case 16:
             product = fake.video_product()
             category = 'Video & Blu-ray'
+            index = video_list.index(product) + 1
+            product_id = selection * index
            # print("case: " + str(selection) + " " + str(product))
         case 17:
             product = fake.watch_product()
             category = 'Watches'
+            index = watch_list.index(product) + 1
+            product_id = selection * index
             #print("case: " + str(selection) + " " + str(product))
-    return product + ',' + category 
+    return product + ',' + category + ',' + str(product_id)
 
 def getBeautyProvider():
     product_provider = DynamicProvider (
