@@ -9,9 +9,8 @@ def generate_orderID():
     return str(uuid.uuid4())
 
 def generate_productID():
-    num  = range(1,2000)
-    productID = random.sample(num,1)[0]
-    return productID
+     productID = fake.random_number(digits=5, fix_len=True)
+     return productID
 
 def generate_customerID():
      customerID = fake.random_number(digits=5, fix_len=True)
