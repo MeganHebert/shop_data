@@ -110,9 +110,6 @@ def main():
     while counter < limit:
         appendGeneratedData(fake, data, counter, rogue_amount)
         counter += 1
-
-    #print(data)
-
     
     with open('shop_data_generation.csv', 'w', newline='') as csv_file:
         fieldnames = ['order_id', 'customer_id', 'customer_name', 'product_id', 'product_name','product_category', 'payment_type', 'qty', 'price', 
