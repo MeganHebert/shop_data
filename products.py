@@ -9,12 +9,19 @@ def generate_orderID():
     return str(uuid.uuid4())
 
 def generate_productID():
-    num  = range(1,2000)
-    productID = random.sample(num,1)[0]
-    return productID
+     productID = fake.random_number(digits=5, fix_len=True)
+     return productID
+
+def generate_customerID():
+     customerID = fake.random_number(digits=5, fix_len=True)
+     return customerID
 
 def generate_name():
-    return fake.name()
+    name_provider = DynamicProvider(
+        provider_name = "customer_name",
+        elements = [fake.name()],
+    )
+    return name_provider
 
 # 17 categories
 def grab_random_category_product(fake):
