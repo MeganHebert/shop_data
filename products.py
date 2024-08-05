@@ -45,9 +45,20 @@ video_list = ['Mad Max: Fury Road','Inception','The Dark Knight','Avengers: Endg
 watch_list = ['Rolex Submariner','Omega Seamaster','Patek Philippe Nautilus','Audemars Piguet Royal Oak','Tag Heuer Carrera','Breitling Navitimer','Longines Master Collection',
                     'Omega Speedmaster Professional','IWC Pilot’s Watch','Jaeger-LeCoultre Reverso','Cartier Tank','Tissot Le Locle']
 
-def generateProductId(fake):
-    productID  = fake.pyint(min_value=1, max_value=2000)
-    return productID
+def generate_productID(fake):
+     productID = fake.random_number(digits=5, fix_len=True)
+     return productID
+
+def generate_customerID(fake):
+     customerID = fake.random_number(digits=5, fix_len=True)
+     return customerID
+
+def generate_name(fake):
+    name_provider = DynamicProvider(
+        provider_name = "customer_name",
+        elements = [fake.name()],
+    )
+    return name_provider
 
 def getProductCategoryProvider():
     product_category_provider = DynamicProvider(
@@ -64,7 +75,6 @@ def grab_random_category_product(fake):
     selection = fake.pyint(min_value=1, max_value=17)
     product = None
     category = None
-    product_id = 0
     match selection:
         case 1:
             product = fake.beauty_product()
@@ -151,7 +161,7 @@ def grab_random_category_product(fake):
             category = 'Watches'
             index = watch_list.index(product) + 1
             product_id = selection * index
-    return product + ',' + category + ',' + str(product_id)
+    return product + ',' + category
 
 def getBeautyProvider():
     product_provider = DynamicProvider (
