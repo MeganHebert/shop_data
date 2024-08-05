@@ -67,10 +67,10 @@ def addProviders(fake):
 def appendGeneratedData(fake, data, count, rogue_amount):
     category_product_id = products.grab_random_category_product(fake).split(',')
 
-    order_id = generateOrderId(fake)
+    order_id = products.generate_productID(fake)
     customer_id = fake.unique.random_int(min=111111, max=999999)
     customer_name = generate_name(fake)
-    product_id = category_product_id[2]
+    product_id = products.generate_productID(fake)
     product_name = category_product_id[0]
     product_category = category_product_id[1]
     payment_type = fake.payment_type()
