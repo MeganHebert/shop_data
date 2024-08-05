@@ -46,9 +46,8 @@ video_list = ['Mad Max: Fury Road','Inception','The Dark Knight','Avengers: Endg
 watch_list = ['Rolex Submariner','Omega Seamaster','Patek Philippe Nautilus','Audemars Piguet Royal Oak','Tag Heuer Carrera','Breitling Navitimer','Longines Master Collection',
                     'Omega Speedmaster Professional','IWC Pilot’s Watch','Jaeger-LeCoultre Reverso','Cartier Tank','Tissot Le Locle']
 
-def generateProductId():
-    num  = range(1,2000)
-    productID = random.sample(num,1)[0]
+def generateProductId(fake):
+    productID  = fake.pyint(min_value=1, max_value=2000)
     return productID
 
 def getProductCategoryProvider():
@@ -63,7 +62,7 @@ def getProductCategoryProvider():
 
 # 17 categories
 def grab_random_category_product(fake):
-    selection = random.randint(1,17)
+    selection = fake.pyint(min_value=1, max_value=17)
     #print('Selection: ' + str(selection))
     product = None
     category = None

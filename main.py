@@ -67,7 +67,7 @@ def addProviders(fake):
 def appendGeneratedData(fake, data, count, rogue_amount):
     category_product_id = products.grab_random_category_product(fake).split(',')
 
-    order_id = generateOrderId()
+    order_id = generateOrderId(fake)
     customer_id = fake.unique.random_int(min=111111, max=999999)
     customer_name = generate_name(fake)
     product_id = category_product_id[2]
@@ -94,11 +94,6 @@ def appendGeneratedData(fake, data, count, rogue_amount):
                     'product_name': product_name, 'product_category':product_category, 'payment_type':payment_type, 'qty':quantity, 'price':price, 
                     'datetime':date_time, 'country':country, 'city':city, 'ecommerce_website_name':ecommerce_website, 'payment_txn_id':payment_txn_id,
                     'payment_txn_success': payment_txn_success, 'failure_reason': failure_reason})
-    
-    '''print(f'Order Id:{order_id}, Customer Id:{customer_id}, Customer Name:{customer_name}, Product Id:{product_id}, \n' +
-          f'Product Name:{product_name}, Product Category: {product_category}, Payment Type: {payment_type}, Quantity: {quantity}, Price: {price},\n' +
-            f'Date Time:{date_time}, Country:{country}, City:{city}, Ecommerce Website:{ecommerce_website}, Payment Txn Id:{payment_txn_id},\n' +
-            f'Payment Txn Success:{payment_txn_success}, Failure Reason: {failure_reason}')'''
 
 def main():
     print("Running application...")
