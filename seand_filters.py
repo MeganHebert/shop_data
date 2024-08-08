@@ -25,14 +25,14 @@ def filtered_data_seand(df):
 
     return result_df
 
+if __name__ == "__main__":
+    sc = SparkContext.getOrCreate()
+    sc.setLogLevel("WARN")
+    spark = SparkSession(sc)
 
-sc = SparkContext.getOrCreate()
-sc.setLogLevel("WARN")
-spark = SparkSession(sc)
+    data_df = spark.read.csv("/user/seand/p2_data/data_team_2.csv", inferSchema=True)
+    data_df.show(1000)
 
-data_df = spark.read.csv("/user/seand/p2_data/data_team_2.csv", inferSchema=True)
-data_df.show(1000)
+    data_df = filtered_data_seand(data_df)
 
-data_df = filtered_data_seand(data_df)
-
-data_df.show(1000)
+    data_df.show(1000)
