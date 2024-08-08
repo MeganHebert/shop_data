@@ -20,7 +20,7 @@ def filtered_data_tony(rdd):
 
     #filtered_price_rdd.show()
 
-    filtered_product_category_rdd = filtered_not_null_price_rdd.filter(~upper(col('_c5')).contains("ERROR") |  ~upper(col('_c5')).contains("BOOM"))
+    filtered_product_category_rdd = filtered_no_number_failure_reason_rdd.filter(~upper(col('_c5')).contains("ERROR") |  ~upper(col('_c5')).contains("BOOM"))
     #filtered_product_category_rdd.show()
     #_c6 payment_type 6 Errors for payment type
     filtered_payment_type_rdd = filtered_product_category_rdd.filter(~upper(col('_c6')).contains("ERROR") | ~upper(col('_c6')).contains("BOOM"))
@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     output_path = "file:///root/filtered_data_team_2_clean/"
     filtered_df.write \
-        .mode('default') \
+        .mode('overwrite') \
         .option("header", "false") \
         .csv(output_path)
 
