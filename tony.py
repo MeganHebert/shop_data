@@ -43,32 +43,33 @@ def filtered_data_tony(rdd):
 
     return filtered_excluded_keywords_rdd
 
-sc = SparkContext.getOrCreate()
-# Create Spark Session 
-spark = SparkSession(sc)
-#conf = SparkConf().setAppName("Example1").setMaster("local")
+if __name__ == "__main__":
+    sc = SparkContext.getOrCreate()
+    # Create Spark Session 
+    spark = SparkSession(sc)
+    #conf = SparkConf().setAppName("Example1").setMaster("local")
 
 
-#sc = SparkContext(conf = conf)
+    #sc = SparkContext(conf = conf)
 
-#team2_rdd = sc.textFile("/csv_data/data_team_2.csv")
-path = sc.textFile("file:///root/data_team_2.csv")
+    #team2_rdd = sc.textFile("/csv_data/data_team_2.csv")
+    path = sc.textFile("file:///root/data_team_2.csv")
 
-df = spark.read.csv(path)
+    df = spark.read.csv(path)
 
-#df.printSchema()
+    #df.printSchema()
 
-filtered_df = filtered_data_tony(df)
+    filtered_df = filtered_data_tony(df)
 
-#filtered_df.show()
+    #filtered_df.show()
 
-output_path = "file:///root/filtered_data_team_2_clean/"
-filtered_df.write \
-    .mode('default') \
-    .option("header", "false") \
-    .csv(output_path)
+    output_path = "file:///root/filtered_data_team_2_clean/"
+    filtered_df.write \
+        .mode('default') \
+        .option("header", "false") \
+        .csv(output_path)
 
-# Convert DataFrame to RDD of strings
-#rdd1 = filtered_df.rdd.map(lambda row: ','.join(str(field) for field in row))
-#rdd1.saveAsTextFile("file:///root/data_team_2_clean.csv")
-# To run:  spark-submit PySpark_Example.py
+    # Convert DataFrame to RDD of strings
+    #rdd1 = filtered_df.rdd.map(lambda row: ','.join(str(field) for field in row))
+    #rdd1.saveAsTextFile("file:///root/data_team_2_clean.csv")
+    # To run:  spark-submit PySpark_Example.py

@@ -15,16 +15,16 @@ def filtered_data_megan(df):
     filter_prod_name = filter_productID.filter(~col('_c4').isin(prod_name_error_msg))
     return filter_prod_name
 
+if __name__ == "__main__":
+    sc = SparkContext.getOrCreate()
+    sc.setLogLevel("WARN")
+    
+    spark = SparkSession(sc)
 
-sc = SparkContext.getOrCreate()
-sc.setLogLevel("WARN")
- 
-spark = SparkSession(sc)
+    path = sc.textFile("file:///home/username/data_team_2.csv")
 
-path = sc.textFile("file:///home/username/data_team_2.csv")
+    df = spark.read.csv(path)
 
-df = spark.read.csv(path)
+    df = filtered_data_megan(df)
 
-df = filtered_data_megan(df)
-
-df.show()
+    df.show()
