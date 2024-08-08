@@ -16,7 +16,13 @@ def filtered_data_tony(rdd):
     filtered_no_number_payment_type_rdd = filtered_no_number_product_cat_rdd.filter(~col('_c6').rlike('(?=.*\\d)(?=.*[a-zA-Z])'))
     filtered_no_number_failure_reason_rdd = filtered_no_number_payment_type_rdd.filter(~col('_c15').rlike('(?=.*\\d)(?=.*[a-zA-Z])'))
  
-    filtered_qty_rdd = filtered_no_number_failure_reason_rdd.filter(~col('_c7').rlike('^[^0-9]*$') & (col('_c7') != ''))
+        filtered_qty_rdd = filtered_no_number_failure_reason_rdd.filter(
+        (col('_c7').cast('int').isNotNull()) &  # Ensure it's not null
+        (col('_c7').cast('int').between(1, 1000)) # Ensure it's between 1 and 1000
+    )
+
+    non_zero_df = filtered_qty_rdd.filter(col('_c7').cast('int') != 0)
+    filtered_qty_rdd = non_zero_df.filter(~col('_c8').rlike('^[^0-9]*$') & (col('_c8') != ''))
 
 
     filtered_price_rdd = filtered_qty_rdd.filter(~col('_c8').rlike('^[^0-9]*$') & (col('_c8') != ''))
