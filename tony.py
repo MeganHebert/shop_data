@@ -18,16 +18,12 @@ def filtered_data_tony(rdd):
     filtered_no_number_failure_reason_rdd = filtered_no_number_payment_type_rdd.filter(
         col('_c15').isNull() | ~col('_c15').rlike('.*\\d.*')
     )
- 
-    filtered_qty_rdd = filtered_no_number_failure_reason_rdd.filter(~col('_c7').rlike('^[^0-9]*$') & (col('_c7') != ''))
 
-
-    filtered_price_rdd = filtered_qty_rdd.filter(~col('_c8').rlike('^[^0-9]*$') & (col('_c8') != ''))
     #refined_filter_price_rdd = df.filter(~col('_c8').rlike('^[^0-9]*$') & (col('_c8') != '') & (col('_c8') != "46284y924"))
 
     #filtered_price_rdd.show()
 
-    filtered_product_category_rdd = filtered_not_null_price_rdd.filter(~upper(col('_c5')).contains("ERROR") |  ~upper(col('_c5')).contains("BOOM"))
+    filtered_product_category_rdd = filtered_no_number_failure_reason_rdd.filter(~upper(col('_c5')).contains("ERROR") |  ~upper(col('_c5')).contains("BOOM"))
     #filtered_product_category_rdd.show()
     #_c6 payment_type 6 Errors for payment type
     filtered_payment_type_rdd = filtered_product_category_rdd.filter(~upper(col('_c6')).contains("ERROR") | ~upper(col('_c6')).contains("BOOM"))
@@ -36,8 +32,8 @@ def filtered_data_tony(rdd):
     filtered_qty_rdd = filtered_payment_type_rdd.filter(~col('_c7').rlike('^[^0-9]*$') & (col('_c7') != ''))
     non_zero_df = filtered_qty_rdd.filter(col('_c7').cast('int') != 0)
 
-    filtered_price_rdd = non_zero_df.filter(~col('_c8').rlike('^[^0-9]*$') & (col('_c8') != ''))
-    filtered_price_rdd = filtered_price_rdd.filter(col('_c7').cast('int') != 0)
+    filtered_price_rdd = non_zero_df.filter(col('_c8').rlike('^[0-9]*\\.?[0-9]+$') & (col('_c8') != ''))
+    filtered_price_rdd = filtered_price_rdd.filter(col('_c8').cast('int') != 0)
     # Filter out rows where '_c15' contains any of the keywords 11 erros
     filtered_excluded_keywords_rdd = filtered_price_rdd.filter(
         (upper(col('_c15')).contains("NETWORK") |
