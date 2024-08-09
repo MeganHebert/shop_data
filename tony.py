@@ -23,10 +23,22 @@ def filtered_data_tony(rdd):
 
     #filtered_price_rdd.show()
 
-    filtered_product_category_rdd = filtered_no_number_failure_reason_rdd.filter(~upper(col('_c5')).contains("ERROR") |  ~upper(col('_c5')).contains("BOOM"))
+    filtered_product_category_rdd = filtered_no_number_failure_reason_rdd.filter(
+        ~upper(col('_c5')).contains("ERROR") &
+        ~upper(col('_c5')).contains("BOOM") &
+        ~upper(col('_c5')).contains("THIS") &
+        ~upper(col('_c5')).contains("CORRUPTED") &
+        ~upper(col('_c5')).contains("!")
+    )
     #filtered_product_category_rdd.show()
     #_c6 payment_type 6 Errors for payment type
-    filtered_payment_type_rdd = filtered_product_category_rdd.filter(~upper(col('_c6')).contains("ERROR") | ~upper(col('_c6')).contains("BOOM"))
+    filtered_payment_type_rdd = filtered_product_category_rdd.filter(
+        ~upper(col('_c6')).contains("ERROR") &
+        ~upper(col('_c6')).contains("BOOM") &
+        ~upper(col('_c6')).contains("THIS") &
+        ~upper(col('_c6')).contains("CORRUPTED") &
+        ~upper(col('_c6')).contains("!")
+    )
 
     #_c7 qty 10 errors found
     filtered_qty_rdd = filtered_payment_type_rdd.filter(~col('_c7').rlike('^[^0-9]*$') & (col('_c7') != ''))
